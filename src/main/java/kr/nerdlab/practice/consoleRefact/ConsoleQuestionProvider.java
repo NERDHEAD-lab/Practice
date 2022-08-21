@@ -3,22 +3,22 @@ package kr.nerdlab.practice.consoleRefact;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class QuestionProvider extends BaseQuestionProvider {
+public class ConsoleQuestionProvider extends BaseQuestionProvider {
 
 
-	private QuestionProvider(String question, Consumer<QuestionOptions> options) {
+	private ConsoleQuestionProvider(String question, Consumer<QuestionOptions> options) {
 		super(question, options);
 	}
-	private QuestionProvider(String question, String option, Runnable action) {
+	private ConsoleQuestionProvider(String question, String option, Runnable action) {
 		super(question, option, action);
 	}
 
 	public static BaseQuestionProvider of(String question, Consumer<QuestionOptions> options) {
-		return new QuestionProvider(question, options);
+		return new ConsoleQuestionProvider(question, options);
 	}
 
 	public static BaseQuestionProvider of(String question, String option, Runnable action) {
-		return new QuestionProvider(question, option, action);
+		return new ConsoleQuestionProvider(question, option, action);
 	}
 
 	@Override

@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public abstract class BaseQuestionProvider {
-	private String question;
-	private QuestionProvider.QuestionOptions options;
+	private final String question;
+	private final ConsoleQuestionProvider.QuestionOptions options;
 
-	protected BaseQuestionProvider(String question, Consumer<QuestionProvider.QuestionOptions> options) {
+	protected BaseQuestionProvider(String question, Consumer<ConsoleQuestionProvider.QuestionOptions> options) {
 		this.question = question;
 		this.options = QuestionOptions.of(options);
 	}
@@ -36,7 +36,9 @@ public abstract class BaseQuestionProvider {
 	}
 
 	protected abstract void printQuestion(String question);
+
 	protected abstract void printOptionAsSingle(String option);
+
 	protected abstract void printOptionWithIndex(int index, String option);
 
 	protected abstract int selectIndex();
