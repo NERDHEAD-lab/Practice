@@ -1,4 +1,4 @@
-package kr.nerdlab.practice.consoleRefact;
+package kr.nerdlab.practice.consoleRefact.old;
 
 import kr.nerdlab.practice.BaseSample;
 import org.junit.Test;
