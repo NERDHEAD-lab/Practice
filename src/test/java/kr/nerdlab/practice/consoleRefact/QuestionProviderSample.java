@@ -3,15 +3,15 @@ package kr.nerdlab.practice.consoleRefact;
 import kr.nerdlab.practice.BaseSample;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class QuestionProviderSample extends BaseSample {
 
 	public static void main(String[] args) {
-		new QuestionProviderSample().reviewCode();
+//		new QuestionProviderSample().reviewCode();
+		new QuestionProviderSample().reviewCode2();
 	}
+
 
 	@Override
 	public void originalCode() {
@@ -56,25 +56,10 @@ public class QuestionProviderSample extends BaseSample {
 							.answer("나는 바보다", () -> System.out.println("바보 ㅇㅈㅇㅈ"))
 							.answer("나는 바보가 아닌디유", () -> System.out.println("엥 바보 맞는디유"))
 		).run();
-//Case 2
-		int i1 = QuestionProvider.of(
-				"질문입니다!",
-				answers
-						-> answers
-						.answer("나는 바보다", () -> System.out.println("바보 ㅇㅈㅇㅈ"))
-						.answer("나는 바보가 아닌디유", () -> System.out.println("엥 바보 맞는디유"))
-		).runWithResult();
-//Case 3
-		QuestionProvider provider = QuestionProvider.of(
-				"질문입니다!",
-				answers
-						-> answers
-						.answer("나는 바보다", () -> System.out.println("바보 ㅇㅈㅇㅈ"))
-						.answer("나는 바보가 아닌디유", () -> System.out.println("엥 바보 맞는디유"))
-		);
-		//logger.info("provider instance init finished");
-
-		int i = provider.runWithResult();
 //		int result = provider.runWithResult();
+	}
+
+	public void reviewCode2() {
+		QuestionProviders.of(Questions.Q_Start).run();
 	}
 }

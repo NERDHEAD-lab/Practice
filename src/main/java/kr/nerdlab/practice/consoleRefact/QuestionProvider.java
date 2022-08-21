@@ -10,7 +10,6 @@ public class QuestionProvider {
 	private final List<Answer> answers;
 
 
-	private QuestionProvider(){}
 	private QuestionProvider(String question, Consumer<Answers> answersConsumer) {
 		Answers answers = new Answers();
 		answersConsumer.accept(answers);
