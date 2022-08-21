@@ -46,7 +46,4 @@ public class QuestionProviders {
 	public static QuestionProvider of(Questions question) {
 		return question.getQuestionProvider();
 	}
-	public static QuestionProvider of(Questions question, QuestionDictionary lang) {
-		return question.getQuestionProvider();
-	}
 }
