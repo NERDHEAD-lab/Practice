@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.function.Function;
 
-public abstract class NotStringBase<T> implements Serializable {
+public abstract class NotStringBase<T> implements Serializable, NotString<T> {
 	private String source;
 	private Map<String, T> dictionary;
 	private NotConfig<T> config;
@@ -18,25 +18,28 @@ public abstract class NotStringBase<T> implements Serializable {
 	}
 
 	private NotConfig<T> config() {
-		NotConfig<T> tNotConfig = NotConfig.create(new NotTypeReference<T>() {
-		});
-		tNotConfig.replaceEmptyValue(initReplaceEmptyValue());
-		return tNotConfig;
+		NotConfig<T> tNotConfig = NotConfig.create(new NotTypeReference<>() {});
+
+		return tNotConfig.replaceEmptyValue(initReplaceEmptyValue());
 	}
 
 	//TODO : if null, throw.
+	@Override
 	public void setConfig(NotConfig<T> config) {
 		this.config = config;
 	}
 
+	@Override
 	public String toNotString() {
 		return source;
 	}
 
+	@Override
 	public void setSource(String source) {
 		this.source = source;
 	}
 
+	@Override
 	public void setDictionary(Map<String, T> dictionary) {
 		this.dictionary = dictionary;
 	}
@@ -83,6 +86,11 @@ public abstract class NotStringBase<T> implements Serializable {
 
 	@Override
 	public String toString() {
+		return getString();
+	}
+
+	@Override
+	public String getString() {
 		return replace(this::replaceId);
 	}
 
@@ -112,40 +120,27 @@ public abstract class NotStringBase<T> implements Serializable {
 		}
 
 		public boolean checkStart(char ch) {
-			//startIndex가 false인 시점 부터 ch가 일치 할 경우 true
-			char[] startWith = config.startWith.toCharArray();
-			temp.append(ch);
-			for (int i = 0; i < startIndex.length; i++) {
-				boolean index = startIndex[i];
-				if (index) continue;
-
-				if (startWith[i] == ch) {
-					startIndex[i] = true;
-					return true;
-				} else {
-					return false;
-				}
-			}
-			//isStarted
-			return false;
+			return check(ch, startIndex, config.startWith.toCharArray());
 		}
 
 		public boolean checkEnd(char ch) {
-			//startIndex가 false인 시점 부터 ch가 일치 할 경우 true
-			char[] endWith = config.endWith.toCharArray();
+			return check(ch, endIndex, config.endWith.toCharArray());
+
+		}
+
+		private boolean check(char ch, boolean[] indexArray, char[] with) {
 			temp.append(ch);
-			for (int i = 0; i < endIndex.length; i++) {
-				boolean index = endIndex[i];
+			for (int i = 0; i < indexArray.length; i++) {
+				boolean index = indexArray[i];
 				if (index) continue;
 
-				if (endWith[i] == ch) {
-					endIndex[i] = true;
+				if (with[i] == ch) {
+					indexArray[i] = true;
 					return true;
 				} else {
 					return false;
 				}
 			}
-			//isEnded
 			return false;
 		}
 
