@@ -3,7 +3,7 @@ package kr.nerdlab.practice.parser;
 import java.util.Map;
 
 public interface NotString<T> {
-	void setConfig(NotConfig<T> config);
+	void setConfig(NotStringConfig<T> config);
 	String getString();
 
 	String toNotString();

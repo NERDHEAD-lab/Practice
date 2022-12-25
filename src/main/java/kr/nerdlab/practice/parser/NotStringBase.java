@@ -9,7 +9,7 @@ import java.util.function.Function;
 public abstract class NotStringBase<T> implements Serializable, NotString<T> {
 	private String source;
 	private Map<String, T> dictionary;
-	private NotConfig<T> config;
+	private NotStringConfig<T> config;
 
 	public NotStringBase(String source, Map<String, T> dictionary) {
 		this.source = source;
@@ -17,15 +17,15 @@ public abstract class NotStringBase<T> implements Serializable, NotString<T> {
 		this.config = config();
 	}
 
-	private NotConfig<T> config() {
-		NotConfig<T> tNotConfig = NotConfig.create(new NotTypeReference<>() {});
+	private NotStringConfig<T> config() {
+		NotStringConfig<T> tNotStringConfig = NotStringConfig.create(new NotTypeReference<>() {});
 
-		return tNotConfig.replaceEmptyValue(initReplaceEmptyValue());
+		return tNotStringConfig.replaceEmptyValue(initReplaceEmptyValue());
 	}
 
 	//TODO : if null, throw.
 	@Override
-	public void setConfig(NotConfig<T> config) {
+	public void setConfig(NotStringConfig<T> config) {
 		this.config = config;
 	}
 

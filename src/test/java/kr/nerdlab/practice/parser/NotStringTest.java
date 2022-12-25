@@ -27,7 +27,7 @@ public class NotStringTest {
 			put("data", "world");
 		}});
 		nStr.setConfig(
-				NotConfig.create(new NotTypeReference<String>() {
+				NotStringConfig.create(new NotTypeReference<String>() {
 						})
 						.surroundWith("${{", "}}")
 		);
