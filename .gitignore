@@ -42,7 +42,8 @@
 .idea/*.iml
 .idea/modules
 .idea/misc.xml
-# *.iml
+.idea/vcs.xml
+*.iml
 # *.ipr
 
 # CMake
